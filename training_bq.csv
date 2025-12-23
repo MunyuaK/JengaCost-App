@@ -1,0 +1,341 @@
+Description,Unit,Location,Rate
+Excavation in soft soil,m³,Nairobi,450.0
+Excavation in soft soil,m³,Mombasa,486.0
+Excavation in soft soil,m³,Kisumu,441.0
+Excavation in soft soil,m³,Nakuru,441.0
+Excavation in soft soil,m³,Eldoret,432.0
+Excavation in hard soil/murram,m³,Nairobi,650.0
+Excavation in hard soil/murram,m³,Mombasa,702.0
+Excavation in hard soil/murram,m³,Kisumu,637.0
+Excavation in hard soil/murram,m³,Nakuru,637.0
+Excavation in hard soil/murram,m³,Eldoret,624.0
+Excavation in rock (manual),m³,Nairobi,1200.0
+Excavation in rock (manual),m³,Mombasa,1296.0
+Excavation in rock (manual),m³,Kisumu,1176.0
+Excavation in rock (manual),m³,Nakuru,1176.0
+Excavation in rock (manual),m³,Eldoret,1152.0
+Backfilling with selected material,m³,Nairobi,380.0
+Backfilling with selected material,m³,Mombasa,410.4
+Backfilling with selected material,m³,Kisumu,372.4
+Backfilling with selected material,m³,Nakuru,372.4
+Backfilling with selected material,m³,Eldoret,364.8
+Hardcore filling and compaction,m³,Nairobi,1800.0
+Hardcore filling and compaction,m³,Mombasa,1944.0
+Hardcore filling and compaction,m³,Kisumu,1764.0
+Hardcore filling and compaction,m³,Nakuru,1764.0
+Hardcore filling and compaction,m³,Eldoret,1728.0
+Disposal of excavated material off-site,m³,Nairobi,320.0
+Disposal of excavated material off-site,m³,Mombasa,345.6
+Disposal of excavated material off-site,m³,Kisumu,313.6
+Disposal of excavated material off-site,m³,Nakuru,313.6
+Disposal of excavated material off-site,m³,Eldoret,307.2
+Concrete Class 15/20 foundation,m³,Nairobi,12500.0
+Concrete Class 15/20 foundation,m³,Mombasa,13500.0
+Concrete Class 15/20 foundation,m³,Kisumu,12250.0
+Concrete Class 15/20 foundation,m³,Nakuru,12250.0
+Concrete Class 15/20 foundation,m³,Eldoret,12000.0
+Concrete Class 20/25 columns,m³,Nairobi,14200.0
+Concrete Class 20/25 columns,m³,Mombasa,15336.0
+Concrete Class 20/25 columns,m³,Kisumu,13916.0
+Concrete Class 20/25 columns,m³,Nakuru,13916.0
+Concrete Class 20/25 columns,m³,Eldoret,13632.0
+Concrete Class 25/30 beams and slabs,m³,Nairobi,15800.0
+Concrete Class 25/30 beams and slabs,m³,Mombasa,17064.0
+Concrete Class 25/30 beams and slabs,m³,Kisumu,15484.0
+Concrete Class 25/30 beams and slabs,m³,Nakuru,15484.0
+Concrete Class 25/30 beams and slabs,m³,Eldoret,15168.0
+Blinding concrete 1:3:6,m³,Nairobi,11000.0
+Blinding concrete 1:3:6,m³,Mombasa,11880.0
+Blinding concrete 1:3:6,m³,Kisumu,10780.0
+Blinding concrete 1:3:6,m³,Nakuru,10780.0
+Blinding concrete 1:3:6,m³,Eldoret,10560.0
+Mass concrete for foundations,m³,Nairobi,13500.0
+Mass concrete for foundations,m³,Mombasa,14580.0
+Mass concrete for foundations,m³,Kisumu,13230.0
+Mass concrete for foundations,m³,Nakuru,13230.0
+Mass concrete for foundations,m³,Eldoret,12960.0
+High tensile steel reinforcement Y8,kg,Nairobi,135.0
+High tensile steel reinforcement Y8,kg,Mombasa,145.8
+High tensile steel reinforcement Y8,kg,Kisumu,132.3
+High tensile steel reinforcement Y8,kg,Nakuru,132.3
+High tensile steel reinforcement Y8,kg,Eldoret,129.6
+High tensile steel reinforcement Y10,kg,Nairobi,128.0
+High tensile steel reinforcement Y10,kg,Mombasa,138.24
+High tensile steel reinforcement Y10,kg,Kisumu,125.44
+High tensile steel reinforcement Y10,kg,Nakuru,125.44
+High tensile steel reinforcement Y10,kg,Eldoret,122.88
+High tensile steel reinforcement Y12,kg,Nairobi,122.0
+High tensile steel reinforcement Y12,kg,Mombasa,131.76
+High tensile steel reinforcement Y12,kg,Kisumu,119.56
+High tensile steel reinforcement Y12,kg,Nakuru,119.56
+High tensile steel reinforcement Y12,kg,Eldoret,117.12
+High tensile steel reinforcement Y16,kg,Nairobi,118.0
+High tensile steel reinforcement Y16,kg,Mombasa,127.44
+High tensile steel reinforcement Y16,kg,Kisumu,115.64
+High tensile steel reinforcement Y16,kg,Nakuru,115.64
+High tensile steel reinforcement Y16,kg,Eldoret,113.28
+High tensile steel reinforcement Y20,kg,Nairobi,115.0
+High tensile steel reinforcement Y20,kg,Mombasa,124.2
+High tensile steel reinforcement Y20,kg,Kisumu,112.7
+High tensile steel reinforcement Y20,kg,Nakuru,112.7
+High tensile steel reinforcement Y20,kg,Eldoret,110.4
+Mild steel reinforcement R6,kg,Nairobi,145.0
+Mild steel reinforcement R6,kg,Mombasa,156.6
+Mild steel reinforcement R6,kg,Kisumu,142.1
+Mild steel reinforcement R6,kg,Nakuru,142.1
+Mild steel reinforcement R6,kg,Eldoret,139.2
+Binding wire,kg,Nairobi,180.0
+Binding wire,kg,Mombasa,194.4
+Binding wire,kg,Kisumu,176.4
+Binding wire,kg,Nakuru,176.4
+Binding wire,kg,Eldoret,172.8
+150mm solid concrete blocks (machine),m²,Nairobi,1250.0
+150mm solid concrete blocks (machine),m²,Mombasa,1350.0
+150mm solid concrete blocks (machine),m²,Kisumu,1225.0
+150mm solid concrete blocks (machine),m²,Nakuru,1225.0
+150mm solid concrete blocks (machine),m²,Eldoret,1200.0
+200mm solid concrete blocks (machine),m²,Nairobi,1450.0
+200mm solid concrete blocks (machine),m²,Mombasa,1566.0
+200mm solid concrete blocks (machine),m²,Kisumu,1421.0
+200mm solid concrete blocks (machine),m²,Nakuru,1421.0
+200mm solid concrete blocks (machine),m²,Eldoret,1392.0
+225mm solid concrete blocks (machine),m²,Nairobi,1650.0
+225mm solid concrete blocks (machine),m²,Mombasa,1782.0
+225mm solid concrete blocks (machine),m²,Kisumu,1617.0
+225mm solid concrete blocks (machine),m²,Nakuru,1617.0
+225mm solid concrete blocks (machine),m²,Eldoret,1584.0
+Machine cut stones 150mm thick,m²,Nairobi,2800.0
+Machine cut stones 150mm thick,m²,Mombasa,3024.0
+Machine cut stones 150mm thick,m²,Kisumu,2744.0
+Machine cut stones 150mm thick,m²,Nakuru,2744.0
+Machine cut stones 150mm thick,m²,Eldoret,2688.0
+Machine cut stones 225mm thick,m²,Nairobi,3200.0
+Machine cut stones 225mm thick,m²,Mombasa,3456.0
+Machine cut stones 225mm thick,m²,Kisumu,3136.0
+Machine cut stones 225mm thick,m²,Nakuru,3136.0
+Machine cut stones 225mm thick,m²,Eldoret,3072.0
+Common burnt bricks 225mm thick,m²,Nairobi,1150.0
+Common burnt bricks 225mm thick,m²,Mombasa,1242.0
+Common burnt bricks 225mm thick,m²,Kisumu,1127.0
+Common burnt bricks 225mm thick,m²,Nakuru,1127.0
+Common burnt bricks 225mm thick,m²,Eldoret,1104.0
+Galvanized iron sheets 28 gauge,m²,Nairobi,650.0
+Galvanized iron sheets 28 gauge,m²,Mombasa,702.0
+Galvanized iron sheets 28 gauge,m²,Kisumu,637.0
+Galvanized iron sheets 28 gauge,m²,Nakuru,637.0
+Galvanized iron sheets 28 gauge,m²,Eldoret,624.0
+Galvanized iron sheets 30 gauge,m²,Nairobi,580.0
+Galvanized iron sheets 30 gauge,m²,Mombasa,626.4
+Galvanized iron sheets 30 gauge,m²,Kisumu,568.4
+Galvanized iron sheets 30 gauge,m²,Nakuru,568.4
+Galvanized iron sheets 30 gauge,m²,Eldoret,556.8
+Decra roofing tiles (stone coated),m²,Nairobi,1850.0
+Decra roofing tiles (stone coated),m²,Mombasa,1998.0
+Decra roofing tiles (stone coated),m²,Kisumu,1813.0
+Decra roofing tiles (stone coated),m²,Nakuru,1813.0
+Decra roofing tiles (stone coated),m²,Eldoret,1776.0
+Clay roof tiles,m²,Nairobi,1200.0
+Clay roof tiles,m²,Mombasa,1296.0
+Clay roof tiles,m²,Kisumu,1176.0
+Clay roof tiles,m²,Nakuru,1176.0
+Clay roof tiles,m²,Eldoret,1152.0
+Timber purlins 2x3 inches,m,Nairobi,180.0
+Timber purlins 2x3 inches,m,Mombasa,194.4
+Timber purlins 2x3 inches,m,Kisumu,176.4
+Timber purlins 2x3 inches,m,Nakuru,176.4
+Timber purlins 2x3 inches,m,Eldoret,172.8
+Timber purlins 2x4 inches,m,Nairobi,240.0
+Timber purlins 2x4 inches,m,Mombasa,259.2
+Timber purlins 2x4 inches,m,Kisumu,235.2
+Timber purlins 2x4 inches,m,Nakuru,235.2
+Timber purlins 2x4 inches,m,Eldoret,230.4
+Ridge capping (metal),m,Nairobi,320.0
+Ridge capping (metal),m,Mombasa,345.6
+Ridge capping (metal),m,Kisumu,313.6
+Ridge capping (metal),m,Nakuru,313.6
+Ridge capping (metal),m,Eldoret,307.2
+Hardwood door frame 100x50mm,m,Nairobi,850.0
+Hardwood door frame 100x50mm,m,Mombasa,918.0
+Hardwood door frame 100x50mm,m,Kisumu,833.0
+Hardwood door frame 100x50mm,m,Nakuru,833.0
+Hardwood door frame 100x50mm,m,Eldoret,816.0
+Flush door 2100x900mm,No.,Nairobi,8500.0
+Flush door 2100x900mm,No.,Mombasa,9180.0
+Flush door 2100x900mm,No.,Kisumu,8330.0
+Flush door 2100x900mm,No.,Nakuru,8330.0
+Flush door 2100x900mm,No.,Eldoret,8160.0
+Panelled door 2100x900mm,No.,Nairobi,12000.0
+Panelled door 2100x900mm,No.,Mombasa,12960.0
+Panelled door 2100x900mm,No.,Kisumu,11760.0
+Panelled door 2100x900mm,No.,Nakuru,11760.0
+Panelled door 2100x900mm,No.,Eldoret,11520.0
+Hardwood window frame 100x75mm,m,Nairobi,950.0
+Hardwood window frame 100x75mm,m,Mombasa,1026.0
+Hardwood window frame 100x75mm,m,Kisumu,931.0
+Hardwood window frame 100x75mm,m,Nakuru,931.0
+Hardwood window frame 100x75mm,m,Eldoret,912.0
+Aluminum sliding window,m²,Nairobi,4500.0
+Aluminum sliding window,m²,Mombasa,4860.0
+Aluminum sliding window,m²,Kisumu,4410.0
+Aluminum sliding window,m²,Nakuru,4410.0
+Aluminum sliding window,m²,Eldoret,4320.0
+Kitchen cabinets (melamine finish),m,Nairobi,12000.0
+Kitchen cabinets (melamine finish),m,Mombasa,12960.0
+Kitchen cabinets (melamine finish),m,Kisumu,11760.0
+Kitchen cabinets (melamine finish),m,Nakuru,11760.0
+Kitchen cabinets (melamine finish),m,Eldoret,11520.0
+Timber roof trusses,m²,Nairobi,1200.0
+Timber roof trusses,m²,Mombasa,1296.0
+Timber roof trusses,m²,Kisumu,1176.0
+Timber roof trusses,m²,Nakuru,1176.0
+Timber roof trusses,m²,Eldoret,1152.0
+UPVC soil pipes 110mm,m,Nairobi,850.0
+UPVC soil pipes 110mm,m,Mombasa,918.0
+UPVC soil pipes 110mm,m,Kisumu,833.0
+UPVC soil pipes 110mm,m,Nakuru,833.0
+UPVC soil pipes 110mm,m,Eldoret,816.0
+UPVC waste pipes 50mm,m,Nairobi,380.0
+UPVC waste pipes 50mm,m,Mombasa,410.4
+UPVC waste pipes 50mm,m,Kisumu,372.4
+UPVC waste pipes 50mm,m,Nakuru,372.4
+UPVC waste pipes 50mm,m,Eldoret,364.8
+GI water pipes 25mm (3/4 inch),m,Nairobi,650.0
+GI water pipes 25mm (3/4 inch),m,Mombasa,702.0
+GI water pipes 25mm (3/4 inch),m,Kisumu,637.0
+GI water pipes 25mm (3/4 inch),m,Nakuru,637.0
+GI water pipes 25mm (3/4 inch),m,Eldoret,624.0
+PPR water pipes 25mm hot/cold,m,Nairobi,420.0
+PPR water pipes 25mm hot/cold,m,Mombasa,453.6
+PPR water pipes 25mm hot/cold,m,Kisumu,411.6
+PPR water pipes 25mm hot/cold,m,Nakuru,411.6
+PPR water pipes 25mm hot/cold,m,Eldoret,403.2
+Water closet (WC) white suite,No.,Nairobi,8500.0
+Water closet (WC) white suite,No.,Mombasa,9180.0
+Water closet (WC) white suite,No.,Kisumu,8330.0
+Water closet (WC) white suite,No.,Nakuru,8330.0
+Water closet (WC) white suite,No.,Eldoret,8160.0
+Wash hand basin with pedestal,No.,Nairobi,6500.0
+Wash hand basin with pedestal,No.,Mombasa,7020.0
+Wash hand basin with pedestal,No.,Kisumu,6370.0
+Wash hand basin with pedestal,No.,Nakuru,6370.0
+Wash hand basin with pedestal,No.,Eldoret,6240.0
+Kitchen sink stainless steel double bowl,No.,Nairobi,7500.0
+Kitchen sink stainless steel double bowl,No.,Mombasa,8100.0
+Kitchen sink stainless steel double bowl,No.,Kisumu,7350.0
+Kitchen sink stainless steel double bowl,No.,Nakuru,7350.0
+Kitchen sink stainless steel double bowl,No.,Eldoret,7200.0
+Water storage tank 5000 litres,No.,Nairobi,85000.0
+Water storage tank 5000 litres,No.,Mombasa,91800.0
+Water storage tank 5000 litres,No.,Kisumu,83300.0
+Water storage tank 5000 litres,No.,Nakuru,83300.0
+Water storage tank 5000 litres,No.,Eldoret,81600.0
+2.5mm² electrical cables (twin),m,Nairobi,85.0
+2.5mm² electrical cables (twin),m,Mombasa,91.8
+2.5mm² electrical cables (twin),m,Kisumu,83.3
+2.5mm² electrical cables (twin),m,Nakuru,83.3
+2.5mm² electrical cables (twin),m,Eldoret,81.6
+4.0mm² electrical cables (twin),m,Nairobi,135.0
+4.0mm² electrical cables (twin),m,Mombasa,145.8
+4.0mm² electrical cables (twin),m,Kisumu,132.3
+4.0mm² electrical cables (twin),m,Nakuru,132.3
+4.0mm² electrical cables (twin),m,Eldoret,129.6
+13A switched socket outlet,No.,Nairobi,450.0
+13A switched socket outlet,No.,Mombasa,486.0
+13A switched socket outlet,No.,Kisumu,441.0
+13A switched socket outlet,No.,Nakuru,441.0
+13A switched socket outlet,No.,Eldoret,432.0
+Distribution board 8-way,No.,Nairobi,8500.0
+Distribution board 8-way,No.,Mombasa,9180.0
+Distribution board 8-way,No.,Kisumu,8330.0
+Distribution board 8-way,No.,Nakuru,8330.0
+Distribution board 8-way,No.,Eldoret,8160.0
+Light switches 1-gang,No.,Nairobi,280.0
+Light switches 1-gang,No.,Mombasa,302.4
+Light switches 1-gang,No.,Kisumu,274.4
+Light switches 1-gang,No.,Nakuru,274.4
+Light switches 1-gang,No.,Eldoret,268.8
+LED bulbs 15W,No.,Nairobi,350.0
+LED bulbs 15W,No.,Mombasa,378.0
+LED bulbs 15W,No.,Kisumu,343.0
+LED bulbs 15W,No.,Nakuru,343.0
+LED bulbs 15W,No.,Eldoret,336.0
+PVC conduit 20mm,m,Nairobi,95.0
+PVC conduit 20mm,m,Mombasa,102.6
+PVC conduit 20mm,m,Kisumu,93.1
+PVC conduit 20mm,m,Nakuru,93.1
+PVC conduit 20mm,m,Eldoret,91.2
+"Cement screed 1:3, 25mm thick",m²,Nairobi,650.0
+"Cement screed 1:3, 25mm thick",m²,Mombasa,702.0
+"Cement screed 1:3, 25mm thick",m²,Kisumu,637.0
+"Cement screed 1:3, 25mm thick",m²,Nakuru,637.0
+"Cement screed 1:3, 25mm thick",m²,Eldoret,624.0
+Ceramic floor tiles 400x400mm,m²,Nairobi,1850.0
+Ceramic floor tiles 400x400mm,m²,Mombasa,1998.0
+Ceramic floor tiles 400x400mm,m²,Kisumu,1813.0
+Ceramic floor tiles 400x400mm,m²,Nakuru,1813.0
+Ceramic floor tiles 400x400mm,m²,Eldoret,1776.0
+Ceramic wall tiles 300x300mm,m²,Nairobi,1650.0
+Ceramic wall tiles 300x300mm,m²,Mombasa,1782.0
+Ceramic wall tiles 300x300mm,m²,Kisumu,1617.0
+Ceramic wall tiles 300x300mm,m²,Nakuru,1617.0
+Ceramic wall tiles 300x300mm,m²,Eldoret,1584.0
+Terrazzo floor tiles 400x400mm,m²,Nairobi,2200.0
+Terrazzo floor tiles 400x400mm,m²,Mombasa,2376.0
+Terrazzo floor tiles 400x400mm,m²,Kisumu,2156.0
+Terrazzo floor tiles 400x400mm,m²,Nakuru,2156.0
+Terrazzo floor tiles 400x400mm,m²,Eldoret,2112.0
+Plaster and skim coat internal walls,m²,Nairobi,580.0
+Plaster and skim coat internal walls,m²,Mombasa,626.4
+Plaster and skim coat internal walls,m²,Kisumu,568.4
+Plaster and skim coat internal walls,m²,Nakuru,568.4
+Plaster and skim coat internal walls,m²,Eldoret,556.8
+External wall render and skim,m²,Nairobi,680.0
+External wall render and skim,m²,Mombasa,734.4
+External wall render and skim,m²,Kisumu,666.4
+External wall render and skim,m²,Nakuru,666.4
+External wall render and skim,m²,Eldoret,652.8
+Emulsion paint 2 coats internal,m²,Nairobi,320.0
+Emulsion paint 2 coats internal,m²,Mombasa,345.6
+Emulsion paint 2 coats internal,m²,Kisumu,313.6
+Emulsion paint 2 coats internal,m²,Nakuru,313.6
+Emulsion paint 2 coats internal,m²,Eldoret,307.2
+Oil paint 2 coats external,m²,Nairobi,420.0
+Oil paint 2 coats external,m²,Mombasa,453.6
+Oil paint 2 coats external,m²,Kisumu,411.6
+Oil paint 2 coats external,m²,Nakuru,411.6
+Oil paint 2 coats external,m²,Eldoret,403.2
+Ceiling board (gypsum) 12mm,m²,Nairobi,950.0
+Ceiling board (gypsum) 12mm,m²,Mombasa,1026.0
+Ceiling board (gypsum) 12mm,m²,Kisumu,931.0
+Ceiling board (gypsum) 12mm,m²,Nakuru,931.0
+Ceiling board (gypsum) 12mm,m²,Eldoret,912.0
+Skilled mason per day,No.,Nairobi,1500.0
+Skilled mason per day,No.,Mombasa,1620.0
+Skilled mason per day,No.,Kisumu,1470.0
+Skilled mason per day,No.,Nakuru,1470.0
+Skilled mason per day,No.,Eldoret,1440.0
+General laborer per day,No.,Nairobi,800.0
+General laborer per day,No.,Mombasa,864.0
+General laborer per day,No.,Kisumu,784.0
+General laborer per day,No.,Nakuru,784.0
+General laborer per day,No.,Eldoret,768.0
+Carpenter per day,No.,Nairobi,1800.0
+Carpenter per day,No.,Mombasa,1944.0
+Carpenter per day,No.,Kisumu,1764.0
+Carpenter per day,No.,Nakuru,1764.0
+Carpenter per day,No.,Eldoret,1728.0
+Plumber per day,No.,Nairobi,2000.0
+Plumber per day,No.,Mombasa,2160.0
+Plumber per day,No.,Kisumu,1960.0
+Plumber per day,No.,Nakuru,1960.0
+Plumber per day,No.,Eldoret,1920.0
+Electrician per day,No.,Nairobi,2200.0
+Electrician per day,No.,Mombasa,2376.0
+Electrician per day,No.,Kisumu,2156.0
+Electrician per day,No.,Nakuru,2156.0
+Electrician per day,No.,Eldoret,2112.0
+Painter per day,No.,Nairobi,1600.0
+Painter per day,No.,Mombasa,1728.0
+Painter per day,No.,Kisumu,1568.0
+Painter per day,No.,Nakuru,1568.0
+Painter per day,No.,Eldoret,1536.0
