@@ -11,7 +11,10 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
+from sklearn.metrics.pairwise import cosine_similarity
 import os
+from PIL import Image
+import pytesseract
 from typing import Tuple, Dict, List, Optional
 import io
 from datetime import datetime
@@ -205,16 +208,18 @@ def save_database(df: pd.DataFrame) -> bool:
 
 class CostPredictionModel:
     """
-    Machine Learning model for predicting construction item rates.
+    Upgraded ML model with Confidence Scoring.
     """
     
     def __init__(self):
-        self.model = None
+        self.vectorizer = None
+        self.rf = None
+        self.train_vectors = None
         self.is_trained = False
     
     def train(self, df: pd.DataFrame) -> None:
         """
-        Train the ML model on the dataset.
+        Train the ML model and store vectors for similarity checking.
         """
         # Combine description and location as features
         df['combined_features'] = df['Description'] + " " + df['Location']
@@ -222,71 +227,103 @@ class CostPredictionModel:
         X = df['combined_features']
         y = df['Rate']
         
-        # Create pipeline with TF-IDF and Random Forest
-        self.model = Pipeline([
-            ('tfidf', TfidfVectorizer(max_features=500, ngram_range=(1, 2))),
-            ('rf', RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1))
-        ])
+        # 1. Vectorize (Convert text to numbers)
+        self.vectorizer = TfidfVectorizer(max_features=500, ngram_range=(1, 2))
+        self.train_vectors = self.vectorizer.fit_transform(X)
         
-        self.model.fit(X, y)
+        # 2. Train Regressor (The Price Predictor)
+        self.rf = RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1)
+        self.rf.fit(self.train_vectors, y)
+        
         self.is_trained = True
     
-    def predict(self, description: str, location: str) -> float:
+    def predict_with_confidence(self, description: str, location: str) -> Tuple[float, float]:
         """
-        Predict the rate for a given description and location.
+        Predict rate AND return a confidence score (0.0 to 1.0).
         """
         if not self.is_trained:
             raise ValueError("Model not trained yet!")
         
+        # Vectorize input
         combined = description + " " + location
-        prediction = self.model.predict([combined])[0]
-        return max(0, prediction)  # Ensure non-negative
-
+        input_vec = self.vectorizer.transform([combined])
+        
+        # 1. Predict Price
+        prediction = self.rf.predict(input_vec)[0]
+        
+        # 2. Calculate Confidence (Cosine Similarity to training data)
+        # Finds how close this item is to the closest item we have seen before
+        similarity_scores = cosine_similarity(input_vec, self.train_vectors)
+        confidence = similarity_scores.max()
+        
+        return max(0, prediction), confidence
 
 # ============================================================================
 # BUSINESS LOGIC FUNCTIONS
 # ============================================================================
 
 def calculate_estimate(description: str, location: str, quantity: float, 
-                       model: CostPredictionModel) -> Tuple[float, float]:
+                       model: CostPredictionModel) -> Tuple[float, float, float]:
     """
-    Calculate rate and total estimate for an item.
+    Calculate rate, total, and confidence.
     """
-    rate = model.predict(description, location)
+    rate, conf = model.predict_with_confidence(description, location)
     total = rate * quantity
-    return rate, total
-
+    return rate, total, conf
 
 def process_batch_bq(df_upload: pd.DataFrame, description_col: str, 
                      quantity_col: str, location: str, 
                      model: CostPredictionModel) -> pd.DataFrame:
     """
-    Process a batch Bill of Quantities and predict rates.
+    Process BQ and flag low-confidence predictions.
     """
     df_result = df_upload.copy()
     
     rates = []
     totals = []
+    confidences = []
+    notes = []
+    
+    progress_bar = st.progress(0)
     
     for idx, row in df_result.iterrows():
         description = str(row[description_col])
         quantity = float(row[quantity_col]) if pd.notna(row[quantity_col]) else 0
         
         try:
-            rate = model.predict(description, location)
+            # Use the new function that returns rate AND confidence
+            rate, conf = model.predict_with_confidence(description, location)
             total = rate * quantity
-        except:
+            
+            # Logic for Low Confidence
+            if conf < 0.5: # Less than 50% sure
+                note = "⚠️ LOW CONFIDENCE - Verify Rate"
+            else:
+                note = "✅ OK"
+                
+        except Exception as e:
             rate = 0
             total = 0
+            conf = 0
+            note = f"Error: {e}"
         
         rates.append(rate)
         totals.append(total)
+        confidences.append(conf)
+        notes.append(note)
+        
+        # Update progress bar
+        if idx % 10 == 0:
+            progress_bar.progress(min(1.0, idx / len(df_result)))
+            
+    progress_bar.empty()
     
-    df_result['AI_Predicted_Rate'] = rates
+    df_result['AI_Rate'] = rates
     df_result['Total_Cost'] = totals
+    df_result['Confidence_%'] = [round(c * 100, 1) for c in confidences]
+    df_result['Status'] = notes
     
     return df_result
-
 
 def optimize_budget(df_bq: pd.DataFrame, target_budget: float) -> Tuple[pd.DataFrame, str, Dict]:
     """
@@ -605,10 +642,19 @@ def render_budget_optimizer(model: CostPredictionModel):
 
 
 def render_admin_panel(df: pd.DataFrame):
-    """Module D: Admin Panel with CMS"""
+    """Module D: Admin Panel with CMS & OCR"""
     st.header("🔐 Admin Panel")
     
-    # Password protection
+    # --- PASSWORD LOGIC ---
+    try:
+        # Try to load the secure password from Streamlit Cloud Secrets
+        ADMIN_PASSWORD = st.secrets["ADMIN_PASSWORD"]
+    except (FileNotFoundError, KeyError):
+        # Fallback ONLY if secrets are missing (e.g. local testing)
+        # You can change this to your strong password if testing locally
+        ADMIN_PASSWORD = "admin123" 
+    
+    # --- AUTHENTICATION ---
     if 'admin_authenticated' not in st.session_state:
         st.session_state.admin_authenticated = False
     
@@ -623,72 +669,80 @@ def render_admin_panel(df: pd.DataFrame):
         return
     
     st.success("✅ Authenticated")
-    
     if st.button("Logout"):
         st.session_state.admin_authenticated = False
         st.rerun()
     
-    tab1, tab2 = st.tabs(["➕ Add New Item", "✏️ Edit Database"])
+    # --- TABS FOR ENTRY METHODS ---
+    tab1, tab2, tab3 = st.tabs(["➕ Add Item (Manual)", "📸 Add via Camera (OCR)", "✏️ Edit Database"])
     
+    # TAB 1: MANUAL ENTRY
     with tab1:
-        st.subheader("Add New Construction Item")
-        
+        st.subheader("Manual Data Entry")
         with st.form("add_item_form"):
             description = st.text_input("Item Description*")
             unit = st.selectbox("Unit*", UNITS)
             location = st.selectbox("Location*", LOCATIONS)
             rate = st.number_input("Market Rate (KES)*", min_value=0.0, step=10.0)
             
-            submitted = st.form_submit_button("Add Item", type="primary", use_container_width=True)
-            
-            if submitted:
+            if st.form_submit_button("Add Item", type="primary"):
                 if description and rate > 0:
-                    new_row = pd.DataFrame([{
-                        "Description": description,
-                        "Unit": unit,
-                        "Location": location,
-                        "Rate": rate
-                    }])
-                    
+                    new_row = pd.DataFrame([{"Description": description, "Unit": unit, "Location": location, "Rate": rate}])
                     df_updated = pd.concat([df, new_row], ignore_index=True)
-                    
                     if save_database(df_updated):
-                        st.success("✅ Item added successfully!")
+                        st.success(f"✅ Added: {description}")
                         st.rerun()
-                else:
-                    st.error("Please fill all required fields")
     
+    # TAB 2: CAMERA / OCR ENTRY
     with tab2:
-        st.subheader("Edit Existing Database")
-        st.info("Edit cells directly. Click 'Save Changes' when done.")
+        st.subheader("📸 AI Receipt Scanner")
+        st.info("Snap a photo of a receipt or price tag. The AI will try to read it.")
         
-        # Editable dataframe
-        edited_df = st.data_editor(
-            df,
-            use_container_width=True,
-            num_rows="dynamic",
-            column_config={
-                "Description": st.column_config.TextColumn("Description", width="large"),
-                "Unit": st.column_config.SelectboxColumn("Unit", options=UNITS),
-                "Location": st.column_config.SelectboxColumn("Location", options=LOCATIONS),
-                "Rate": st.column_config.NumberColumn("Rate (KES)", format="%.2f")
-            }
-        )
+        img_file = st.camera_input("Take a Picture")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("💾 Save Changes", type="primary", use_container_width=True):
-                if save_database(edited_df):
-                    st.success("✅ Database updated successfully!")
-                    st.rerun()
-        
-        with col2:
-            if st.button("🔄 Reset to Default", use_container_width=True):
-                df_reset = generate_training_dataset()
-                if save_database(df_reset):
-                    st.success("✅ Database reset to default!")
-                    st.rerun()
+        if img_file:
+            # 1. Show the image
+            image = Image.open(img_file)
+            st.image(image, caption="Captured Image", width=300)
+            
+            # 2. Extract Text
+            with st.spinner("🤖 AI is reading text..."):
+                try:
+                    # Configure tesseract path if needed (usually auto-detected on cloud)
+                    extracted_text = pytesseract.image_to_string(image)
+                    st.text_area("Raw Extracted Text", extracted_text, height=100)
+                    
+                    # 3. Auto-Fill Form
+                    st.markdown("---")
+                    st.subheader("Verify & Save")
+                    
+                    # Try to guess values (Basic logic - improves with time)
+                    guessed_desc = extracted_text.split('\n')[0] if extracted_text else ""
+                    
+                    with st.form("ocr_save"):
+                        c1, c2 = st.columns(2)
+                        ocr_desc = c1.text_input("Description", value=guessed_desc)
+                        ocr_unit = c2.selectbox("Unit", UNITS)
+                        
+                        c3, c4 = st.columns(2)
+                        ocr_loc = c3.selectbox("Location", LOCATIONS)
+                        ocr_rate = c4.number_input("Rate (KES)", min_value=0.0)
+                        
+                        if st.form_submit_button("💾 Save to Database"):
+                            new_row = pd.DataFrame([{"Description": ocr_desc, "Unit": ocr_unit, "Location": ocr_loc, "Rate": ocr_rate}])
+                            df_updated = pd.concat([df, new_row], ignore_index=True)
+                            if save_database(df_updated):
+                                st.success("✅ Saved from OCR!")
+                except Exception as e:
+                    st.error(f"OCR Error: {e}. Make sure 'tesseract-ocr' is in packages.txt")
 
+    # TAB 3: EDIT DATABASE
+    with tab3:
+        st.subheader("Master Database")
+        edited_df = st.data_editor(df, num_rows="dynamic", use_container_width=True)
+        if st.button("💾 Save Changes"):
+            if save_database(edited_df):
+                st.success("✅ Database updated!")
 
 # ============================================================================
 # MAIN APPLICATION
