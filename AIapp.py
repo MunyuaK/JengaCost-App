@@ -29,12 +29,13 @@ warnings.filterwarnings('ignore')
 APP_VERSION = "1.0.0"
 APP_TITLE = "JengaCost AI"
 CSV_DATABASE = "training_bq.csv"
+
 # Secure Password Retrieval
 try:
     ADMIN_PASSWORD = st.secrets["ADMIN_PASSWORD"]
-except FileNotFoundError:
+except (FileNotFoundError, KeyError):
     # Fallback for local testing if secrets.toml is missing
-    ADMIN_PASSWORD = "Karky2003"
+    ADMIN_PASSWORD = "admin123"
 
 LOCATIONS = ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret"]
 UNITS = ["m³", "m²", "m", "kg", "No.", "Sqm", "Sum", "Tonne", "Ltr"]
@@ -427,7 +428,6 @@ def render_sidebar():
         st.markdown("---")
         st.markdown("© 2025 JengaCost AI")
 
-
 def render_ai_pricing_engine(model: CostPredictionModel, df: pd.DataFrame):
     """Module A: AI Pricing Engine"""
     st.header("🤖 AI Pricing Engine")
@@ -455,26 +455,41 @@ def render_ai_pricing_engine(model: CostPredictionModel, df: pd.DataFrame):
             format="%.2f"
         )
         
-        # Get unit from database
-        unit = df[df['Description'] == selected_desc]['Unit'].iloc[0]
+        # Get unit from database (Safe check)
+        unit_check = df[df['Description'] == selected_desc]['Unit']
+        unit = unit_check.iloc[0] if not unit_check.empty else "Units"
         st.text_input("Unit", value=unit, disabled=True)
     
     if st.button("Calculate Estimate", type="primary", use_container_width=True):
+        
+        # --- 🔍 SPY LOG: START ---
+        # This prints to your private Streamlit Console
+        print(f"🔍 ANALYTICS: User searching for '{selected_desc}' in '{location}'")
+        # --- SPY LOG: END ---
+
         with st.spinner("Calculating..."):
-            rate, total = calculate_estimate(selected_desc, location, quantity, model)
+            # Update: We now unpack 3 values (Rate, Total, Confidence)
+            rate, total, conf = calculate_estimate(selected_desc, location, quantity, model)
             
             st.success("✅ Estimate Generated!")
             
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Rate per Unit", f"KES {rate:,.2f}")
-            col2.metric("Quantity", f"{quantity:,.2f} {unit}")
-            col3.metric("Total Estimate", f"KES {total:,.2f}")
+            # Create 3 columns to show Rate, Total, AND Confidence
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Rate per Unit", f"KES {rate:,.2f}")
+            c2.metric("Total Estimate", f"KES {total:,.2f}")
+            
+            # Color-coded Confidence Metric
+            if conf >= 0.8:
+                c3.metric("AI Confidence", f"{conf:.0%}", delta="High Trust")
+            elif conf >= 0.5:
+                c3.metric("AI Confidence", f"{conf:.0%}", delta="Medium", delta_color="off")
+            else:
+                c3.metric("AI Confidence", f"{conf:.0%}", delta="-Low Data", delta_color="inverse")
             
             # Show historical data
             historical = df[(df['Description'] == selected_desc) & (df['Location'] == location)]
             if not historical.empty:
-                st.info(f"📊 Market Rate: KES {historical['Rate'].iloc[0]:,.2f}")
-
+                st.info(f"📊 Historical Database Rate: KES {historical['Rate'].iloc[0]:,.2f}")
 
 def render_batch_processor(model: CostPredictionModel):
     """Module B: Batch BQ Processor"""
@@ -779,6 +794,14 @@ def main():
     
     # Initialize
     render_sidebar()
+
+    # --- VISITOR COUNTER ---
+    st.sidebar.markdown("---")
+    st.sidebar.caption("👀 Live Usage")
+    # This badge tracks hits to your specific app link
+    badge_url = "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://jengacost-app.streamlit.app&title=Visitors&edge_flat=false"
+    st.sidebar.markdown(f"[![Hits]({badge_url})](https://jengacost-app.streamlit.app)")
+    # -----------------------
     
     # Load database
     df = load_or_create_database()
@@ -816,7 +839,6 @@ def main():
     
     with tab4:
         render_admin_panel(df)
-
 
 if __name__ == "__main__":
     main()
